@@ -6,26 +6,30 @@ from googleapiclient.discovery import build
 class Channel:
     """Класс для ютуб - канала"""
     API_KEY: str = os.getenv('YOUTUBE_API_KEY')
-    YOUTYBE = build('youtube', 'v3', developerKey=API_KEY)
+    YOUTYBE = build('youtube', 'v3', developerKey = API_KEY)
 
 
     def __init__(self, channel_id: str) -> None:
         """Экземпляр инициализируется id канала."""
 
         # Получаем данные в виде словаря
-        channel = Channel.YOUTYBE.channels().list(id=channel_id, part='snippet,statistics').execute()
+        channel = Channel.YOUTYBE.channels().list(id = channel_id,
+        part = 'snippet,statistics').execute()
 
         # Вычленяем необходимую информацию
         self.__channel_id = channel_id
         self.title = channel["items"][0]["snippet"]["title"]
         self.description = channel["items"][0]["snippet"]["description"]
-        self.url = "https://www.youtube.com/channel/" + channel_id
-        self.number_of_subscribers = channel["items"][0]["statistics"]["subscriberCount"]
+        self.url = "https: / / www.youtube.com / channel / " + channel_id
+        self.number_of_subscribers = channel["items"][0]
+        ["statistics"]["subscriberCount"]
         self.video_count = channel["items"][0]["statistics"]["videoCount"]
         self.number_of_views = channel["items"][0]["statistics"]["viewCount"]
 
 
     @property
+
+
     def channel_id(self):
         return self.__channel_id
 
@@ -50,20 +54,20 @@ class Channel:
 
         # Записываем необходимые данные в словарь
         dictionary = {"channel_id": self.channel_id, "title": self.title,
-                      "description": self.description, "link": self.url,
-                      "number_of_subscribers": self.number_of_subscribers,
-                      "number_of_video": self.video_count,
-                      "number_of_views": self.number_of_views}
+        "description": self.description, "link": self.url,
+        "number_of_subscribers": self.number_of_subscribers,
+        "number_of_video": self.video_count,
+        "number_of_views": self.number_of_views}
 
         # Записываем данные в json файл
         try:
             os.stat(filename).st_size == 0
         except FileNotFoundError as e:
-            with open(filename, "x", encoding="utf-8") as f:
-                json.dump([dictionary], f, ensure_ascii=False)
+            with open(filename, "x", encoding = "utf - 8") as f:
+                json.dump([dictionary], f, ensure_ascii = False)
         else:
-            with open(filename, "r", encoding="utf-8") as f:
+            with open(filename, "r", encoding = "utf - 8") as f:
                 data_list = json.load(f)
             data_list.append(dictionary)
-            with open(filename, "a", encoding="utf-8") as f:
-                json.dump(data_list, f, ensure_ascii=False)
+            with open(filename, "a", encoding = "utf - 8") as f:
+                json.dump(data_list, f, ensure_ascii = False)
