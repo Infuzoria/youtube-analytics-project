@@ -27,6 +27,10 @@ class Channel:
         self.number_of_views = channel["items"][0]["statistics"]["viewCount"]
 
 
+    def __str__(self):
+        return f"{self.title} ({self.url})"
+
+
     @property
 
 
@@ -71,3 +75,7 @@ class Channel:
             data_list.append(dictionary)
             with open(filename, "a", encoding = "utf - 8") as f:
                 json.dump(data_list, f, ensure_ascii = False)
+
+
+ch1 = Channel("UC-OVMPlMA3-YCIeg4z5z23A")
+print(ch1)
