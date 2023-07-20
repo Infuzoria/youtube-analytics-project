@@ -42,6 +42,11 @@ class Channel:
         return self.number_of_subscribers - other.number_of_subscribers
 
 
+    def __lt__(self, other):
+        """Метод для операции сравнения «меньше»"""
+        return self.number_of_subscribers < other.number_of_subscribers
+
+
     @property
 
 
