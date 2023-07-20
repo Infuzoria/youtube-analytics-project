@@ -21,10 +21,9 @@ class Channel:
         self.title = channel["items"][0]["snippet"]["title"]
         self.description = channel["items"][0]["snippet"]["description"]
         self.url = "https: / / www.youtube.com / channel / " + channel_id
-        self.number_of_subscribers = channel["items"][0]
-        ["statistics"]["subscriberCount"]
-        self.video_count = channel["items"][0]["statistics"]["videoCount"]
-        self.number_of_views = channel["items"][0]["statistics"]["viewCount"]
+        self.number_of_subscribers = int(channel["items"][0]["statistics"]["subscriberCount"])
+        self.video_count = int(channel["items"][0]["statistics"]["videoCount"])
+        self.number_of_views = int(channel["items"][0]["statistics"]["viewCount"])
 
 
     def __str__(self):
@@ -106,7 +105,3 @@ class Channel:
             data_list.append(dictionary)
             with open(filename, "a", encoding = "utf - 8") as f:
                 json.dump(data_list, f, ensure_ascii = False)
-
-
-ch1 = Channel("UC-OVMPlMA3-YCIeg4z5z23A")
-print(ch1)
