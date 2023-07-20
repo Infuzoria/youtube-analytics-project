@@ -57,6 +57,11 @@ class Channel:
         return self.number_of_subscribers > other.number_of_subscribers
 
 
+    def __ge__(self, other):
+        """Метод для операции сравнения «больше или равно»"""
+        return self.number_of_subscribers >= other.number_of_subscribers
+
+
     @property
 
 
