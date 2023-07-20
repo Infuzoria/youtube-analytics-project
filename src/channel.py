@@ -21,10 +21,46 @@ class Channel:
         self.title = channel["items"][0]["snippet"]["title"]
         self.description = channel["items"][0]["snippet"]["description"]
         self.url = "https: / / www.youtube.com / channel / " + channel_id
-        self.number_of_subscribers = channel["items"][0]
-        ["statistics"]["subscriberCount"]
-        self.video_count = channel["items"][0]["statistics"]["videoCount"]
-        self.number_of_views = channel["items"][0]["statistics"]["viewCount"]
+        self.number_of_subscribers = int(channel["items"][0]
+        ["statistics"]["subscriberCount"])
+        self.video_count = int(channel["items"][0]["statistics"]["videoCount"])
+        self.number_of_views = int(channel["items"][0]
+        ["statistics"]["viewCount"])
+
+
+    def __str__(self):
+        """Возвращает название и ссылку на канал по шаблону"""
+        return f"{self.title} ({self.url})"
+
+
+    def __add__(self, other):
+        """Метод для операции сложения"""
+        return self.number_of_subscribers + other.number_of_subscribers
+
+
+    def __sub__(self, other):
+        """Метод для операции вычитания"""
+        return self.number_of_subscribers - other.number_of_subscribers
+
+
+    def __lt__(self, other):
+        """Метод для операции сравнения «меньше»"""
+        return self.number_of_subscribers < other.number_of_subscribers
+
+
+    def __le__(self, other):
+        """Метод для операции сравнения «меньше или равно»"""
+        return self.number_of_subscribers <= other.number_of_subscribers
+
+
+    def __gt__(self, other):
+        """Метод для операции сравнения «больше»"""
+        return self.number_of_subscribers > other.number_of_subscribers
+
+
+    def __ge__(self, other):
+        """Метод для операции сравнения «больше или равно»"""
+        return self.number_of_subscribers >= other.number_of_subscribers
 
 
     @property
