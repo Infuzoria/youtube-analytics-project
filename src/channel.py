@@ -28,7 +28,13 @@ class Channel:
 
 
     def __str__(self):
+        """Возвращает название и ссылку на канал по шаблону"""
         return f"{self.title} ({self.url})"
+
+
+    def __add__(self, other):
+        """Метод для операции сложения"""
+        return self.number_of_subscribers + other.number_of_subscribers
 
 
     @property
