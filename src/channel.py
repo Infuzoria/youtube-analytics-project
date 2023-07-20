@@ -37,6 +37,11 @@ class Channel:
         return self.number_of_subscribers + other.number_of_subscribers
 
 
+    def __sub__(self, other):
+        """Метод для операции вычитания"""
+        return self.number_of_subscribers - other.number_of_subscribers
+
+
     @property
 
 
