@@ -23,3 +23,12 @@ class Video():
     def __str__(self):
         """Вывод данных об объекте в пользовательском режиме"""
         return self.title
+
+
+class PLVideo(Video):
+    """Класс для получения информации о видео и плейлисте"""
+
+    def __init__(self, video_id: str, playlist_id: str):
+        """Конструктор класса"""
+        super().__init__(video_id)
+        self.playlist_id = playlist_id
