@@ -16,7 +16,7 @@ class Video():
         # Вычленяем нужную информацию
         self.video_id = video_id
         self.title = video["items"][0]["snippet"]["title"]
-        self.url = video["items"][0]["snippet"]["thumbnails"]["default"]["url"]
+        self.url = "https://youtu.be/" + video_id
         self.number_of_views = video["items"][0]["statistics"]["viewCount"]
         self.number_of_likes = video["items"][0]["statistics"]["likeCount"]
 
