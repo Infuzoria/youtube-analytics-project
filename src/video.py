@@ -13,12 +13,19 @@ class Video():
         # Получаем данные в виде словаря
         video = Video.YOUTYBE.videos().list(part='snippet,statistics', id=video_id).execute()
 
-        # Вычленяем нужную информацию
-        self.video_id = video_id
-        self.title = video["items"][0]["snippet"]["title"]
-        self.url = "https://youtu.be/" + video_id
-        self.number_of_views = video["items"][0]["statistics"]["viewCount"]
-        self.number_of_likes = video["items"][0]["statistics"]["likeCount"]
+        try:
+            # Вычленяем нужную информацию
+            self.video_id = video_id
+            self.title = video["items"][0]["snippet"]["title"]
+            self.url = "https://youtu.be/" + video_id
+            self.number_of_views = video["items"][0]["statistics"]["viewCount"]
+            self.like_count = video["items"][0]["statistics"]["likeCount"]
+        except IndexError:
+            self.video_id = video_id
+            self.title = None
+            self.url = None
+            self.number_of_views = None
+            self.like_count = None
 
     def __str__(self):
         """Вывод данных об объекте в пользовательском режиме"""
